@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/DSMT">Trang chủ</a></li>
+		<li class="breadcrumb-item"><a href="/dsmt">Trang chủ</a></li>
 		<li class="breadcrumb-item"><a href="#/home">Danh sách order</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Chi tiết
 			hóa đơn {{detail.order_id}}</li>
@@ -92,11 +92,9 @@
 	<!-- button control -->
 	<div class="col-12 border-top border-bottom border-info"
 		style="padding: .5rem 0;">
-		<button class="button-49">Tạo đơn mới</button>
-		<button class="button-49" ng-click="delete(detail.order_id)"
-			ng-if="1==detail.status">Xóa đơn</button>
-		<button class="button-49" ng-click="put(detail)"
-			ng-if="2>detail.status">cập nhật</button>
+		<button class="button-49" onclick="location.href='/dsmt/pages/product_detail'">Tạo đơn mới</button>
+		<button class="button-49" ng-click="delete(detail.order_id)" ng-if="1==detail.status">Xóa đơn</button>
+		<button class="button-49" ng-click="put(detail)" ng-if="2>detail.status">cập nhật</button>
 	</div>
 </div>
 

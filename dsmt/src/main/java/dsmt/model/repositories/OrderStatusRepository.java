@@ -13,11 +13,10 @@ import dsmt.model.entities.OrderStatus;
 @Repository
 public interface OrderStatusRepository extends JpaRepository<OrderStatus, Integer>{
 
-	// FOR ROLE SHIPPER - Trạng thái > 1 là đơn hàng đã qua trạng thái chuẩn bị
-	@Query("SELECT o FROM ORDER_STATUS o WHERE o.account_id=:id AND o.status > 1")
+	// FOR ROLE SHIPPER - Trạng thái > 0 là đơn hàng đã qua trạng thái chuẩn bị
+	@Query("SELECT o FROM ORDER_STATUS o WHERE o.account_id=:id AND o.status > 0")
 	List<OrderStatus> findByShipperId(String id);
-	
-	
+
 	// FOR ROLE BUYER
 	@Query(value = "EXEC PROC_ORDER_STATUS_A :id", nativeQuery = true)
 	List<OrderStatus> findByAccountId(String id);

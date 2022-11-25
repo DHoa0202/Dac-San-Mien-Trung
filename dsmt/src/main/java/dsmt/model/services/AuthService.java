@@ -1,7 +1,7 @@
 package dsmt.model.services;
 
 import java.util.Optional;
-
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,10 +24,12 @@ public class AuthService implements UserDetailsService {
 		Optional<Account> optional = dao.getOptional(username);
 		try {
 			if (optional.isPresent()) {
-				Account entity = optional.get();
-				return User.withUsername(entity.getUsername())
-					.password(encoder.encode(entity.getPassword()))
-					.roles(entity.getRoles().iterator().next()).build();
+				Account e = optional.get();
+				Set<String> rs = e.getRoles();
+				
+				return User.withUsername(e.getUsername())
+					.password(encoder.encode(e.getPassword()))
+					.roles(rs.toArray(new String[rs.size()])).build();
 			}
 		} catch (UsernameNotFoundException e) {
 			throw e;

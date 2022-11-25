@@ -13,7 +13,7 @@ import dsmt.model.services.AuthService;
 public class AuthConfig extends WebSecurityConfigurerAdapter {
 	
 	private final String[] PERMIT = {
-		"/css/**", "/js/**", "/data/**", "/rest/**", "/security/**",
+		"/css/**", "/js/**", "/data/**", "/rest/**", "/security/**", "/dsmt", 
 		"/dsmt/pages/dsmt", "/dsmt/pages/home", "/dsmt/pages/product_detail"
 	};	
 	private final String[] FOR_ADMIN = {

@@ -28,23 +28,23 @@ public class OrderService extends AbstractService<Order, Integer> {
 	}
 
 	public List<Order> byAccountId(String id) {
+		id = getUser(id==null?"hoandps18107":id);
 		return ((OrderRepository) super.rep).findByAccountId(id);
 	}
 
 	public List<Order> byBuyerId(String id) {
+		id = getUser(id==null?"hoandps18107":id);
 		return ((OrderRepository) super.rep).findByBuyertId(id);
 	}
 
 	public List<Order> byProductId(Integer id) {
 		return ((OrderRepository) super.rep).findByProductId(id);
 	}
-	
-	
 
 	@Override
 	public <S extends Order> S save(S e) throws IllegalArgumentException {
 		e.setRegTime(new Date());
-		e.setAccount_id("buyer1");
+		e.setAccount_id(super.getUser(null));
 		Integer id = rep.save(new Order(e.getAddress(), e.getRegTime(), e.getAccount_id())).getId();
 		e.setId(id);
 		e.getOrder_details().forEach(x -> x.setOrder_id(id));

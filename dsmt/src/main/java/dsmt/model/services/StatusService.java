@@ -23,10 +23,12 @@ public class StatusService extends AbstractService<OrderStatus, Integer>{
 	}
 
 	public List<OrderStatus> byAccountId(String id) {
+		id = super.getUser(id==null?"hoandps18107":id);
 		return ((OrderStatusRepository) super.rep).findByAccountId(id);
 	}
 	
 	public List<OrderStatus> byShipperId(String id) {
+		id = super.getUser(id==null?"shipper1":id);
 		return ((OrderStatusRepository) super.rep).findByShipperId(id);
 	}
 
