@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymleaf.org"
-	th:replace="~{/index::dynamic(~{::main})}">
+<html xmlns="http://www.thymleaf.org" th:replace="~{/index::dynamic(~{::main})}">
 <head>
 <meta charset="UTF-8">
-<title>QUẢN LÝ TÀI KHOẢN</title>
+<title>QUẢN LÝ TÀI SẢN PHẨM</title>
 </head>
 <body>
 	<main class="container-fluid" ng-app="app" ng-controller="control">
@@ -69,15 +68,21 @@
 
 		<!-- FORM -->
 		<div class="col-lg-8">
-			<form action=""
-				class="form p-3 border-start border-end border-info" id="formCtrl">
+			<form action="" class="form p-3 border-start border-end border-info" id="formCtrl">
 
+				<div class="group mb-3" th:if="${#request.isUserInRole('OWNER')}">
+					<strong class="form-label text-center">Tài khoản</strong>
+					<select class="form-control text-center overflow-auto scroll-y" ng-model="entity.account.username">
+						<option value="{{a.username}}" ng-repeat="a in accounts | filter:{name:fil.$search.ac}" ng-bind="a.name"></option>
+					</select>
+					<hr class="mb-4">
+				</div>
 				<div class="group mb-3">
-					<input type="text" class="fw-bold" required
-						ng-model="entity.name" name="name"> <i
-						class="fs-3 fa-sharp fa-solid {{entity.name ? 'text-primary fa-check' : 'text-danger fa-xmark'}}"></i>
-					<span class="highlight"></span> <span class="bar"></span> <label>Tiêu
-						đề sản phẩm</label>
+					<input type="text" class="fw-bold" required ng-model="entity.name" name="name">
+					<i class="fs-3 fa-sharp fa-solid {{entity.name ? 'text-primary fa-check' : 'text-danger fa-xmark'}}"></i>
+					<span class="highlight"></span>
+					<span class="bar"></span>
+					<label>Tiêu đề sản phẩm</label>
 				</div>
 
 				<div class="d-flex">
@@ -250,9 +255,14 @@
                       }).catch(e => console.error(e.data ? e.data.message : e));
 
                       // get products by account
-                      $http.get(getLink(serverIO,`rest/products/account`)).then(
+                      $http.get(getLink(serverIO,"rest/products[[${#request.isUserInRole('OWNER')?'':'/account'}]]")).then(
                           r => $scope.data = r.data
                       ).catch(e => console.error(e.data ? e.data.message : e));
+                      
+                      // get accounts
+                      $http.get(getLink(serverIO,'rest/statistic/less-buyers')).then(r => {
+                          if(r.status==200) $scope.accounts = r.data
+                      }).catch(e => console.error(e.data ? e.data.message : e));
                   })();
                   
                   function format(e) {

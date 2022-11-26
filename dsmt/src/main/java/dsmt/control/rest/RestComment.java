@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import dsmt.model.entities.Account;
 import dsmt.model.entities.Comment;
 import dsmt.model.services.CommentService;
 
@@ -38,8 +36,6 @@ public class RestComment extends AbstractRESTful<Comment, Comment>{
 	
 	@PostMapping("/post")
 	public ResponseEntity<Comment> post(@RequestBody Comment entity) {
-		String id = super.getUser("hoandps18107");
-		entity.setAccount(new Account(id));
 		return ResponseEntity.ok(dao.save(entity));
 	}
 

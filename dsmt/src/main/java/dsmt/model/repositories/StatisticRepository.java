@@ -2,7 +2,22 @@ package dsmt.model.repositories;
 
 public interface StatisticRepository {
 
+	public Object execute(CUSTOM query, Object...params) throws Exception;
 	public Object execute(S_ORDER proc, Object...params) throws Exception;
+	
+	public enum CUSTOM {
+		LESS_ACCOUNT("EXEC PROC_LESS_ACCOUNT_BY_ROLE ?");
+
+		private String value;
+		private CUSTOM(String value) {
+			this.value = value;
+		}
+		
+		@Override
+		public String toString() {
+			return this.value;
+		}
+	}
 	
 	public enum S_ORDER {
 		MIN_MAX("SELECT * FROM VIEW_SO_RANGE"),

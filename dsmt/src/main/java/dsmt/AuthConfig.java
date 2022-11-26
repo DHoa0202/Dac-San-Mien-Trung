@@ -17,13 +17,13 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 		"/dsmt/pages/dsmt", "/dsmt/pages/home", "/dsmt/pages/product_detail"
 	};	
 	private final String[] FOR_ADMIN = {
-			"/dsmt/pages/statistic_order",
-			"/dsmt/pages/account_management",
-			"/dsmt/pages/progress_management",
-			"/rest/accounts","/rest/accounts/**",
+			"/dsmt/pages/statistic_order", // Thống kê
+			"/dsmt/pages/account_management",	 // Tài khoản
+			"/dsmt/pages/progress_management",	// Quy trình đặt hàng
+			"/rest/accounts","/rest/accounts/**",// Người dùng
 	};
 	private final String[] FOR_SHIPPER = {
-		"/dsmt/pages/shipper_order"
+		"/dsmt/pages/shipper_order" // 
 	};
 	private final String[] FOR_SELLER = {
 		"/dsmt/pages/product_seller"
@@ -59,7 +59,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 	 		.formLogin()
 			.loginProcessingUrl("/security/login") // default [/login] => process the submitted credential
 			.loginPage("/security/loginForm") // form display to login - this post method
-	 		.defaultSuccessUrl("/security/loginSuccess", true)
+	 		.defaultSuccessUrl("/security/loginSuccess", false)
 			.failureForwardUrl("/security/loginFailed"); // login failed
 
         http// logout

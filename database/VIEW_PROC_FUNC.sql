@@ -127,6 +127,22 @@ END
 GO
 EXEC PROC_ACCOUNT_BY_ROLE 'SHIPPER'
 
+-- ++++++++++++++++++++++++++++++++++++++++++++++ SELECT USERNAME, PASSWORD ACCOUNT BY ROLE ID
+IF EXISTS (SELECT name FROM sys.procedures WHERE name = 'PROC_LESS_ACCOUNT_BY_ROLE')
+	DROP PROC PROC_LESS_ACCOUNT_BY_ROLE
+GO
+CREATE PROCEDURE PROC_LESS_ACCOUNT_BY_ROLE
+	@role_id varchar(10)
+AS BEGIN 
+	SELECT username, name 
+		FROM ACCOUNTS a 
+		INNER JOIN AUTHORITIES r
+		ON a.username = r.account_id
+	WHERE r.role_id = @role_id
+END
+GO
+EXEC PROC_LESS_ACCOUNT_BY_ROLE 'BUYER'
+
 
 
 -- ++++++++++++++++++++++++++++++++++++++++++++++ SELECT ORDER BY STATUS

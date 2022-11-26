@@ -32,8 +32,8 @@ public class Comment implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
 	@ObtainVia @Column(name = "regtime")
 	@Id private Date regTime = new Date();
-	
 	private String descript;
+	private Integer evaluate;
 	
 	@JoinColumn(name = "account_id", referencedColumnName = "username", insertable = false, updatable = false)
 	@ManyToOne @JsonIncludeProperties({"username", "email", "name"})

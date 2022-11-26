@@ -11,6 +11,7 @@ import dsmt.model.entities.OrderDetail;
 import dsmt.model.entities.OrderStatus;
 import dsmt.model.repositories.OrderDetailRepository;
 import dsmt.model.repositories.OrderStatusRepository;
+import dsmt.model.utils.InterDAO;
 
 @Service
 public class StatusService extends AbstractService<OrderStatus, Integer>{
@@ -23,12 +24,12 @@ public class StatusService extends AbstractService<OrderStatus, Integer>{
 	}
 
 	public List<OrderStatus> byAccountId(String id) {
-		id = super.getUser(id==null?"hoandps18107":id);
+		id = getUser(id==null?InterDAO.D_USER:id);
 		return ((OrderStatusRepository) super.rep).findByAccountId(id);
 	}
 	
 	public List<OrderStatus> byShipperId(String id) {
-		id = super.getUser(id==null?"shipper1":id);
+		id = getUser(id==null?InterDAO.D_USER:id);
 		return ((OrderStatusRepository) super.rep).findByShipperId(id);
 	}
 

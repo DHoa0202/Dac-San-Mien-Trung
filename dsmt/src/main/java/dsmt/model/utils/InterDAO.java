@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 public interface InterDAO<E, K> {
+	
+	static final String D_USER = "owner";
+	
 	/**
 	 * <h1 style="text-align: center; color: yellow; font-size: 2em; text-transform: uppercase;">
 	 * 		find all entities

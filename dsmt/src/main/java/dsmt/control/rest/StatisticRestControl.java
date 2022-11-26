@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dsmt.model.repositories.StatisticRepository;
+import dsmt.model.repositories.StatisticRepository.CUSTOM;
 import dsmt.model.repositories.StatisticRepository.S_ORDER;
 @RestController
 @CrossOrigin("*")
 @RequestMapping({"/rest/statistic"})
 public class StatisticRestControl {
+	
 	@Autowired private StatisticRepository dao;
 	
 	// THỐNG KÊ SỐ NỘI DUNG THEO TÀI KHOẢN
@@ -29,5 +31,9 @@ public class StatisticRestControl {
 			@RequestParam(required = false) Object...p
 	) throws Exception {
 		return ResponseEntity.ok(dao.execute(s, p));
+	}
+	
+	@GetMapping({"/less-buyers"}) public ResponseEntity<Object> getAccounts () throws Exception {
+		return ResponseEntity.ok(dao.execute(CUSTOM.LESS_ACCOUNT, "SELLER"));
 	}
 }

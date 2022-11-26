@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymleaf.org"
-	th:replace="~{/index::dynamic(~{::main})}">
+<html xmlns="http://www.thymleaf.org" th:replace="~{/index::dynamic(~{::main})}">
 <head>
 <meta charset="UTF-8">
 <title>QUẢN LÝ TÀI KHOẢN</title>
@@ -13,8 +12,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a href="/dsmt">Trang chủ</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Xem
-							chi tiết</li>
+						<li class="breadcrumb-item active" aria-current="page">Xem chi tiết</li>
 					</ol>
 				</nav>
 			</div>
@@ -256,6 +254,12 @@
 									ng-src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png">
 								<span class="text-nowrap overflow-hidden" style="text-overflow: ellipsis;" ng-bind="c.account.name"></span>
 							</a>
+							<div>
+								<label>Đánh giá</label>
+								<div class="d-inline text-warning">
+									<i class="{{x}} fa-star" ng-repeat="x in evalStar(c.evaluate) track by $index"></i>
+								</div>
+							</div>
 							<div class="mt-sm-3 text-end">
 								<span ng-bind="c.regTime | dateRelative : 'dddd, DD-MM-yyyy'"></span>
 								<button class="rounded-3 btn btn-outline-secondary" ng-if="c.account.username==fil.user" ng-click="deleteComment(c)">
@@ -271,16 +275,19 @@
 			</div>
 			<div class="col-lg-4 p-1 pb-0" th:if="${#request.remoteUser}">
 				<input type="hidden" model="fil.$comment" ng-init="fil.$comment={}">
-				<textarea
-					class="border rounded-3 w-100 p-3 overflow-auto  scroll-y"
-					rows="8" style="max-height: 80vh;"
-					ng-model="fil.$comment.descript"></textarea>
-				<div class="d-flex justify-content-end">
+				<textarea class="border rounded-3 w-100 p-3 overflow-auto scroll-y" rows="8" style="max-height: 80vh;" ng-model="fil.$comment.descript"></textarea>
+				<div class="d-flex flex-wrap justify-content-end">
+					<div class="col-12 border-top border-bottom p-2">
+						<label>Đánh giá</label>
+						<div class="d-inline text-warning">
+							<input type="hidden" ng-model="fil.$comment.evaluate" ng-init="fil.$comment.evaluate=5">
+							<i ng-repeat="(i,x) in evalStar(fil.$comment.evaluate) track by $index" ng-click="fil.$comment.evaluate=i+1" class="{{x}} fa-star"></i>
+						</div>
+					</div>
 					<button class="m-1 button-29" ng-click="postcomemnt(fil.$comment)">
 						Bình luận&nbsp;<i class="fa-regular fa-comments"></i>
 					</button>
-					<button class="m-1 button-29"
-						ng-click="fil.$comment.descript=undefined">
+					<button class="m-1 button-29" ng-click="fil.$comment.descript=undefined">
 						Clear&nbsp;<i class="fa-sharp fa-solid fa-trash"></i>
 					</button>
 				</div>
@@ -475,6 +482,13 @@
                        } else str = 'đơn hàng'
                        e.title=str;
                    }
+                   
+                   $scope.evalStar = (num) => {
+                	   var arr = [];
+                	   while(arr.length<num) arr.push('fa-solid');
+                	   while(arr.length<5) arr.push('fa-regular');
+                	   return arr;
+                   }
 
                    // categories
                    $scope.hasAny = function (id, value, array) {
@@ -564,6 +578,7 @@
                            if(r.status==200) {
                                $scope.comments.unshift(r.data)
                                $scope.fil.$comment.descript=undefined;
+                               $scope.fil.$comment.evaluate=5;
                            }
                        }).catch(e => console.error(e.data ? e.data.message : e.data));
                    }

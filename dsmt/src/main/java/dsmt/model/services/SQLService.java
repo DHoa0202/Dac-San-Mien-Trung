@@ -13,4 +13,9 @@ public class SQLService extends AbstractSQL implements StatisticRepository {
 		return super.execute(proc.toString(), params);
 	}
 
+	@Override
+	public Object execute(CUSTOM query, Object... params) throws Exception {
+		return super.execute(query.toString(), params);
+	}
+
 }

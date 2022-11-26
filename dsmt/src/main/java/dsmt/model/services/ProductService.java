@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import dsmt.model.entities.Account;
 import dsmt.model.entities.Product;
 import dsmt.model.repositories.ProductRepository;
+import dsmt.model.utils.InterDAO;
 
 @Service
 public class ProductService extends AbstractService<Product, Integer>{
@@ -26,7 +27,7 @@ public class ProductService extends AbstractService<Product, Integer>{
 	@Override
 	public <S extends Product> S save(S entity) throws IllegalArgumentException {
 		if(entity.getAccount()==null) {
-			entity.setAccount(new Account(getUser("hoandps18107")));
+			entity.setAccount(new Account(getUser(InterDAO.D_USER)));
 		} return super.rep.save(entity);
 	}
 	
@@ -36,6 +37,7 @@ public class ProductService extends AbstractService<Product, Integer>{
 	}
 
 	public List<Product> byAccountId(String username) {
+		username = super.getUser(username==null?InterDAO.D_USER:username);
 		return ((ProductRepository) super.rep).findByAccountId(username);
 	}
 

@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import dsmt.model.entities.Account;
 import dsmt.model.entities.Comment;
 import dsmt.model.repositories.CommentRepository;
+import dsmt.model.utils.InterDAO;
 @Service
 public class CommentService extends AbstractService<Comment, Comment>{
 
@@ -29,6 +31,13 @@ public class CommentService extends AbstractService<Comment, Comment>{
 	
 	public List<Comment> findById(Integer p) throws IllegalArgumentException {
 		return ((CommentRepository) rep).getListById(p);
+	}
+	
+	@Override
+	public <S extends Comment> S save(S entity) throws IllegalArgumentException {
+		String id = super.getUser(InterDAO.D_USER);
+		entity.setAccount(new Account(id));
+		return super.save(entity);
 	}
 
 	public void delete(String a, Integer p, String t) {

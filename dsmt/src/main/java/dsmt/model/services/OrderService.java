@@ -11,6 +11,7 @@ import dsmt.model.entities.Order;
 import dsmt.model.entities.OrderDetail;
 import dsmt.model.repositories.OrderDetailRepository;
 import dsmt.model.repositories.OrderRepository;
+import dsmt.model.utils.InterDAO;
 
 @Service
 public class OrderService extends AbstractService<Order, Integer> {
@@ -28,12 +29,12 @@ public class OrderService extends AbstractService<Order, Integer> {
 	}
 
 	public List<Order> byAccountId(String id) {
-		id = getUser(id==null?"hoandps18107":id);
+		id = getUser(id==null?InterDAO.D_USER:id);
 		return ((OrderRepository) super.rep).findByAccountId(id);
 	}
 
 	public List<Order> byBuyerId(String id) {
-		id = getUser(id==null?"hoandps18107":id);
+		id = getUser(id==null?InterDAO.D_USER:id);
 		return ((OrderRepository) super.rep).findByBuyertId(id);
 	}
 
