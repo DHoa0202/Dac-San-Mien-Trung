@@ -13,7 +13,7 @@ GO
 CREATE TABLE ACCOUNTS (
     username varchar(20) primary key,
     password varchar(30) not null,
-    email varchar(50) unique,
+    email varchar(60),
     name nvarchar(50)
 );
 

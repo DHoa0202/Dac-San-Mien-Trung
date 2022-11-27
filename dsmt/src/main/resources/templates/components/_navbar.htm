@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/dsmt">
+		<a class="navbar-brand" href="/rrs">
 			&Dopf;&Sopf;&Mopf;&Topf;
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -13,7 +13,7 @@
 				style="-bs-scroll-height: 100px;">
 				<!-- PAGES HOME -->
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/dsmt/pages/home">
+					<a class="nav-link active" aria-current="page" href="/rrs/pages/home">
 						<i class="fa fa-home-lg"></i> Home
 					</a>
 				</li>
@@ -25,37 +25,37 @@
 					</a>
 					<ul class="dropdown-menu">
 						<!-- users're account management -->
-						<a class="nav-link" href="/dsmt/pages/account_management" th:if="${#request.isUserInRole('OWNER')}">
+						<a class="nav-link" href="/rrs/pages/account_management" th:if="${#request.isUserInRole('OWNER')}">
 							<i class="fa fa-user-friends"></i> tài khoản hệ thống
 						</a>
-						<a class="nav-link" href="/dsmt/pages/progress_management">
+						<a class="nav-link" href="/rrs/pages/progress_management">
 							<i class="fa-solid fa-chart-simple"></i> Đơn đang chờ
 						</a>
-						<a class="nav-link" href="/dsmt/pages/statistic_order">
+						<a class="nav-link" href="/rrs/pages/statistic_order">
 							<i class="fa-solid fa-chart-simple"></i> Thống kê dữ liệu
 						</a>
 					</ul>
 				</li>
 				
-				<li class="nav-item dropdown text-nowrap" th:if="${#request.isUserInRole('SHIPPER') or #request.isUserInRole('BUYER') or #request.isUserInRole('SELLER') or #request.isUserInRole('OWNER')}">
+				<li class="nav-item dropdown text-nowrap" th:if="${#request.isUserInRole('USER') or #request.isUserInRole('SHIPPER') or #request.isUserInRole('BUYER') or #request.isUserInRole('SELLER') or #request.isUserInRole('OWNER')}">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<i class="fa fa-desktop-alt"></i>&nbsp;Cá nhân
 					</a>
 					<ul class="dropdown-menu">
-						<a class="nav-link" href="/dsmt/pages/product_seller" th:if="${#request.isUserInRole('SELLER') or #request.isUserInRole('OWNER')}">
+						<a class="nav-link" href="/rrs/pages/product_seller" th:if="${#request.isUserInRole('SELLER') or #request.isUserInRole('OWNER')}">
 							<i class="fa-solid fa-chart-simple"></i> Đăng sản phẩm
 						</a>
-						<a class="nav-link" href="/dsmt/pages/product_buyer" th:if="${#request.isUserInRole('BUYER') or #request.isUserInRole('OWNER')}"> 
+						<a class="nav-link" href="/rrs/pages/product_buyer" th:if="${#request.isUserInRole('USER') or #request.isUserInRole('BUYER') or #request.isUserInRole('OWNER')}"> 
 							<i class="fa fa-user-friends"></i> Đơn đặt hàng
 						</a>
-						<a class="nav-link" href="/dsmt/pages/shipper_order" th:if="${#request.isUserInRole('SHIPPER') or #request.isUserInRole('OWNER')}"> 
+						<a class="nav-link" href="/rrs/pages/shipper_order" th:if="${#request.isUserInRole('SHIPPER') or #request.isUserInRole('OWNER')}"> 
 							<i class="fa fa-user-friends"></i> Đơn giao hàng
 						</a>
 					</ul>
 				</li>
 				
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/dsmt/pages/product_detail">
+					<a class="nav-link active" aria-current="page" href="/rrs/pages/product_detail">
 						&nbsp;chi tiết sản phẩm
 					</a>
 				</li>
@@ -80,14 +80,14 @@
 				</a>
 					<ul class="dropdown-menu">
 						<!-- users're account management -->
-						<a class="nav-link" href="/security/loginForm"> <i
-							class="fa fa-sign-in-alt"></i> Đăng nhập
+						<a class="nav-link" href="/security/loginForm">
+							<i class="fa fa-sign-in-alt"></i> Đăng nhập
+						</a>
+						<a class="nav-link" href="/security/loginAuth2/facebook">
+							<i class="fa-brands fa-facebook-square"></i>&nbsp;Facebook
 						</a>
 						<!-- a class="nav-link disabled" href=""> <i
-							class="fa-brands fa-facebook-square"></i> Google
-						</a>
-						<a class="nav-link disabled" href=""> <i
-							class="fa-brands fa-google"></i> Facebook
+							class="fa-brands fa-google"></i> Google
 						</a -->
 
 						<li><hr class="m-0 dropdown-divider"></li>
