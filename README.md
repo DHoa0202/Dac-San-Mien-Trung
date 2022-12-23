@@ -1,6 +1,8 @@
 # Dac_San_Mien_Trung
 Dự án thực tập `ĐẶC SẢN MIỀN TRUNG`
 
+[dsmt demo video](https://youtu.be/2ofh31OEFwE)
+
 Thành viên nhóm:
   - Hồ Nguyên Quốc
   - Ngô Duy Hòa
