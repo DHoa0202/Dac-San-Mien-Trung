@@ -16,6 +16,6 @@ Các chức năng cần xây dựng trong hệ thống
 
 Kiến trúc MVC
 Công nghệ sử dụng
-  - Frondend: Bootstrap, AngularJS(1)
+  - Frontend: Bootstrap, AngularJS(1)
   - Backend: Spring-boot
   - Hệ quản trị: MSSQL (SQL Server 2019)
