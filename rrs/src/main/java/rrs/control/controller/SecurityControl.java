@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,7 +44,7 @@ public class SecurityControl {
 	private @Autowired RoleService rDao; // CRUD account
 	private @Autowired SendMail mail;
 	
-	@RequestMapping({"/deniedPage"})
+	@RequestMapping(value = {"/deniedPage"}, method = {RequestMethod.GET})
 	public String denied() {
 		return "/pages/denied";
 	}

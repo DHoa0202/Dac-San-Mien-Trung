@@ -48,11 +48,11 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 		// ____________________________________________________________ page accessibility
 		http // allow request page authenticated
 			.authorizeRequests()
-        	.antMatchers(PERMIT).permitAll()
         	.antMatchers(FOR_ADMIN).hasAnyRole("OWNER","ADMIN")
         	.antMatchers(FOR_SELLER).hasAnyRole("OWNER","SELLER")
 			.antMatchers(FOR_SHIPPER).hasAnyRole("OWNER","SHIPPER")
 			.antMatchers(FOR_BUYER).hasAnyRole("OWNER","BUYER","USER")
+        	.antMatchers(PERMIT).permitAll()
         	.anyRequest().authenticated(); // have login
 		http.exceptionHandling().accessDeniedPage("/security/deniedPage");
 		
