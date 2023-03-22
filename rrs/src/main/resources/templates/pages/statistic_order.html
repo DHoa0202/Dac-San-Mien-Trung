@@ -49,7 +49,7 @@
 
 	<script>
               const app = angular.module('app', ['ngRoute']);
-              var serverIO = 'http://localhost:8080';
+              var serverIO = location.origin;
 
               /* ____________________________________________________ config*/
               app.config(function ($routeProvider) {

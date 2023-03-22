@@ -299,7 +299,7 @@
 
 		<script>
                const app = angular.module('app', ['ngRoute']);
-               var serverIO = 'http://localhost:8080';
+               var serverIO = location.origin;
                moment.locale('vi');
 
                app.filter('dateRelative', () => {
